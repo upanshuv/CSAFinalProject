@@ -1,0 +1,61 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
+
+/**
+ * create a class representing targets which can
+ * be created and added to the gamePanel. You
+ * should use the image from the target folder
+ * to display for the target. The dimensions of
+ * the target should be 32x28 and the constructor
+ * should take the position as an argument.
+ * 
+ */
+
+public class Target extends GameObject {
+
+    private ImageIcon[] icons;
+    private int blinkPhase = 0;
+    private boolean blinkActive = false;
+
+    public Target(int x, int y) {
+
+            super(x, y);
+            
+            icons = new ImageIcon[4];
+
+            for (int i = 0; i < icons.length; i++) {
+                icons[i] = new ImageIcon("./images/target/green_target" + i + ".png");
+            }
+
+            this.setIcon(icons[blinkPhase]);
+            this.setSize(32, 28); //target dimensions
+        }
+    
+        @Override
+    public void update() { 
+        blinkActive = true;
+        this.setIcon(icons[blinkPhase ++]);
+        if (blinkPhase == 4){
+            blinkPhase = 0;
+            this.setIcon(icons[blinkPhase]);
+            blinkActive = false;
+        }
+    }
+
+    
+
+    public boolean getBlinkActive(){
+        return blinkActive;
+    }
+
+    public void setBlinkActive(){
+        blinkActive = true;
+    }
+
+   
+    // TODO implment the Target class
+
+}

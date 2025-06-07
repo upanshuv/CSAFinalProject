@@ -1,0 +1,44 @@
+(SOLVED) ---Write a method to get the panel length in the door object
+        use this to correctly position door objects
+        RESOLVED: JUST PASS AS AN ARGUMENT
+
+(SOLVED) fix the door being spawned in the wrong places 
+        problem located - gamepanel dimensions are zero 
+        SOLUTION: component location set in paintComponent method (GamePanel)
+
+(SOLVED) add doors for every room:
+                doors should be stored in an array list 
+                        to determine collisions, run has collided on every object in gameloop
+                the number of available doors should be determined from the active room object
+                doors should all be initialized with given room and direction
+                        after update method (wip), rerender doors in gameloop as appropriate
+                door positions for all 4 doors should be properly set in paintComponent method
+                doors should rerender every room Change
+
+(DONE)       room class 
+                has an arraylist feild to contain all possible door directions for given room, along with keys 
+                        done manually through constructor
+                also contains the nessicary filepath for image
+                contains a key corresponding to it's doors (INCORRECT, LOGIC TO FIX BELOW)
+                contains a get/set key method (through constructor)
+
+(FIXED)     INTIT KEYS CORRECTLY 
+                These keys are housed in the 2d array map, which has each room mapped to a 
+            specific key    
+
+(SOLVED)        set player to door side when changing rooms 
+                just set location after room changes    
+
+(SOLVED)IMPLEMENT ACTIVATE BATTLEMODE METHOD 
+
+        should modify movement to be restricted to "Button" objects (IMPLEMENT)
+                -button objects should have two images, one when selected and one when not (IMPLEMENT)
+                -if confused, they are literally just the fight-act-item-mercy buttons
+                -make one class, and have each be given two image arguments and a name (IMPLEMENT)
+                        (EXAMPLE: "act", "imageEx.png", "imageEx1.png")
+        any keyboard inputs that arent left-right-z should be disregarded in keylistener (IMPLEMENT)
+
+IMPLEMENT GENERIC ENEMY CLASS
+
+        all non boss enemies will be subclasses of this class
+        all will be held in an arraylist feild (IMPLEMENT)

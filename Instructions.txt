@@ -1,0 +1,61 @@
+Door Funcitonality ---
+    
+        I did my best to make it as intuitive as possible, 
+    but it's still a bit confusing. The simple Idea is:
+
+    Door Class:
+        -Each Door object is created with a "key" and a "sideOfRoom" field
+        -the key field is going to correspond to the room where the player will
+        be moved to upon contact with said door
+            -These keys are housed in the 2d array map, which has each room mapped to a 
+            specific key. The map only exists to show where rooms with given keys are. The 
+            keys are all done manually in the constructor
+        -The sideOfRoom field determines where the thingy will spawn, up, down
+        left, or right 
+            -The location is initialized to 0,0 and then set in paintcomponent
+            -I plan to eventually only have the doors painted when they are rerenderd
+        Door objects are tied to rooms, hence the
+    
+    Room Class:
+        -Each room object is initialized with a given key, an arraylist
+        for its doors,  and a filepath for the room image
+        -The arrayLists are filled with doors (up to 4, depending on what direction 
+        other rooms are in) initialized MANUALLY with the same key in the gamePanel 
+        constructor.
+        -In gamepanel, an arraylist will contain all possible rooms. Only ONE room
+        can be active at a time (the one the player is in) which is kept track of 
+        with a boolean field and appropriate get/set methods
+            -the first room in the list, the tile room, is ALWAYS true first
+        -in paint component, currently, the array list of ROOMS is fully iterated
+        every update to find the active room, whos arraylist of doors is scanned and
+        rendered
+
+    
+Random Enemy Encounters system
+
+        My current planned implementation involves placing invisible objects down called EnemyTriggers, which 
+    when touched by the player will trigger an encounter. Various enemies will be extensions of Generic Enemy 
+    class to be implemented at a later date. Spawn objects will be removed after triggering a fight
+
+    EnemyTrigger Class implementation:
+        -The constructor of the Gamepanel class creates an ArrayList of these 
+        objects ("enemyTriggers"), and 
+            -Sets their location to one far out of bounds
+            -creates a set amount (currently 10)
+        -Every time a new room is entered, the location of all triggers is 
+        randomized in the setroom method, under the comment //resetTriggers
+        -Upon collision (detected in paintComponent method) 
+            -activateBattleMode method is called
+            -trigger collided with is removed from list of triggers
+            -number of triggers is reduced by one across ALL rooms
+
+Enemy Implementation (Generic)
+    -All Generic enemies are subclasses of the generic enemy superclass
+    -Generic enemy class will be empty (mainly for organizational reasons)
+    -Feilds will include   
+        -A 2d array of lesser buttons 
+        -Any subsequent 2d arrays will represent options of lesser buttons
+        -EXAMPLE IMPLEMENTATION BUTTON PATH: ACT -> Tease (lesserbutton) 
+    -The generic enemies string array will contain string of each enemy name.
+    Upon collision with an enemytrigger, a random string will be selected to be fought, then removed.
+    
